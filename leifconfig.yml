@@ -1,0 +1,19 @@
+org: oclif
+repos:
+  - screen
+assert:
+  - type: pjson
+    source: ./state/package.json
+    target: ./package.json
+  - type: file
+    source: ./state/.eslintrc
+    target: ./.eslintrc
+  - type: dependency
+    manager: yarn
+    dev_dependency: 
+      - eslint
+      - eslint-config-oclif
+      - eslint-config-oclif-typescript
+    removed:
+      - "@oclif/tslint"
+      - tslint

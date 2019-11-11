@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "pretest": "tsc -p test --noEmit",
+    "posttest": "yarn lint"
+  }
+}

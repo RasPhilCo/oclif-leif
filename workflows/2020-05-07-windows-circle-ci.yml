@@ -1,0 +1,62 @@
+version: 0.1
+repos:
+  - group: oclif-core
+    github_org: oclif
+    repos:
+      - config
+      - command
+      - errors
+      - parser
+      - plugin-help
+  - group: oclif-plugins
+    github_org: oclif
+    repos:
+      # - autocomplete
+      - plugin-commands
+      - plugin-command-snapshot
+      # - plugin-interceptor
+      - plugin-legacy
+      - plugin-not-found
+      - plugin-plugins
+      # - plugin-svo
+      - plugin-update
+      - plugin-warn-if-update-available
+      - plugin-which
+  - group: oclif-utils
+    github_org: oclif
+    repos:
+      - screen
+      - color
+      - node-linewrap
+      - cli-ux
+      - test
+      - fancy-test
+      - fancy-test-nock
+      - oclif
+      - dev-cli
+      # - tslint
+      # - eslint
+      # - eslint-config-oclif
+      # - eslint-config-oclif-typescript
+      # - nyc-config
+      # - docker
+      # - semantic-release
+sequences:
+  windows-ci-gh-actions:
+    description: 'chore: add windows ci via github actions'
+    assertions:
+      - type: file-is-exact
+        description: 'add ci.yaml to gh workflows dir'
+        target_relative_filepath: .github/workflows/ci.yml
+        source_relative_filepath: templates/2020-05-07-windows-circle-ci/ci.yml
+      - type: file-does-not-exist
+        description: 'rm appveyor.yml config'
+        target_relative_filepath: appveyor.yml
+workflows:
+  github-ci:
+    apply_to_groups:
+      - oclif-core
+      - oclif-plugins
+      - oclif-utils
+    sequences:
+      - windows-ci-gh-actions

@@ -1,0 +1,67 @@
+version: 0.1
+repos:
+  - group: needs-command-and-help-dev
+    github_org: oclif
+    repos:
+      - plugin-autocomplete
+      - plugin-commands
+      - plugin-command-snapshot
+      - plugin-legacy
+      - plugin-not-found
+      - plugin-plugins
+      - plugin-update
+      - plugin-which
+  - group: needs-command
+    github_org: oclif
+    repos:
+      - plugin-warn-if-update-available
+      - cli-ux
+  - group: needs-command-dev
+    github_org: oclif
+    repos:
+      - test
+
+sequences:
+  update-oclif-command-and-help-dev:
+    description: 'chore: bump oclif command & plugin help'
+    assertions:
+      - type: node-project-has-deps
+        description: bump command & plugin-help
+        manager: yarn
+        dependencies:
+          - "@oclif/command@^1.6.0"
+        dev_dependencies:
+          - "@oclif/plugin-help@^3"
+  update-oclif-command:
+    description: 'chore: bump oclif command'
+    assertions:
+      - type: node-project-has-deps
+        description: bump command
+        manager: yarn
+        dependencies:
+          - "@oclif/command@^1.6.0"
+  update-oclif-command-dev:
+    description: 'chore: bump oclif command'
+    assertions:
+      - type: node-project-has-deps
+        description: bump command
+        manager: yarn
+        dev_dependencies:
+          - "@oclif/command@^1.6.0"
+
+workflows:
+  update-oclif-command-and-help-dev:
+    apply_to_groups:
+      - needs-command-and-help-dev
+    sequences:
+      - update-oclif-command-and-help-dev
+  update-oclif-command:
+    apply_to_groups:
+      - needs-command
+    sequences:
+      - update-oclif-command
+  update-oclif-command-dev:
+    apply_to_groups:
+      - needs-command-dev
+    sequences:
+      - update-oclif-command-dev

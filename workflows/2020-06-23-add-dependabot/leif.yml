@@ -38,17 +38,26 @@ repos:
       - eslint-config-oclif
       - eslint-config-oclif-typescript
       - nyc-config
-      # - docker
+      - docker
       - semantic-release
 sequences:
   add-dependabot:
-    description: 'chore: add windows ci via github actions'
+    description: 'chore: add dependabot.yml'
     assertions:
       - type: file-is-exact
         description: 'add dependabot.yml to github dir'
         target_relative_filepath: .github/dependabot.yml
-        source_relative_filepath: templates/2020-06-23-add-dependabot/dependabot.yml
+        source_relative_filepath: workflows/2020-06-23-add-dependabot/dependabot.yml
         if: ls yarn.lock
+  pin-typescript:
+    description: 'chore: pin typescript'
+    assertions:
+      - type: node-project-has-deps
+        description: pin typescript
+        manager: yarn
+        dev_dependencies:
+          - "typescript@3.8.3"
+        if: "cat package.json | grep \\\"typescript\\\""
 
 workflows:
   github-ci:
@@ -58,3 +67,4 @@ workflows:
       - oclif-utils
     sequences:
       - add-dependabot
+      - pin-typescript

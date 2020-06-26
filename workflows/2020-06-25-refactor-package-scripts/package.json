@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "build": "rm -rf lib && tsc",
+    "pretest": "yarn build --noEmit && tsc -p test --noEmit",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "posttest": "yarn lint"
+  }
+}

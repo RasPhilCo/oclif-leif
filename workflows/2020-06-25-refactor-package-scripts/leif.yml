@@ -1,0 +1,59 @@
+version: 0.1
+repos:
+  - group: oclif-core
+    github_org: oclif
+    repos:
+      - config
+      - command
+      - errors
+      - parser
+  - group: oclif-plugins
+    github_org: oclif
+    repos:
+      - plugin-autocomplete
+      - plugin-commands
+      - plugin-command-snapshot
+      - plugin-help
+      - plugin-interceptor
+      - plugin-legacy
+      - plugin-not-found
+      - plugin-plugins
+      - plugin-update
+      - plugin-warn-if-update-available
+      - plugin-which
+  - group: oclif-utils
+    github_org: oclif
+    repos:
+      - screen
+      - color
+      - node-linewrap
+      - cli-ux
+      - test
+      - fancy-test
+      - fancy-test-nock
+      - oclif
+      - dev-cli
+      - eslint
+      - eslint-config-oclif
+      - eslint-config-oclif-typescript
+      - nyc-config
+      - docker
+      - semantic-release
+sequences:
+  add-pretest-script:
+    description: 'chore: cleanup test scripts'
+    assertions:
+      - type: json-has-properties
+        description: "chore: cleanup test scripts"
+        source_relative_filepath: workflows/2020-06-25-refactor-package-scripts/package.json
+        target_relative_filepath: package.json
+        if: "cat package.json | grep \\\"typescript\\\" && cat package.json | grep \\\"test\\\""
+
+workflows:
+  github-ci:
+    apply_to_groups:
+      - oclif-core
+      - oclif-plugins
+      - oclif-utils
+    sequences:
+      - add-pretest-script

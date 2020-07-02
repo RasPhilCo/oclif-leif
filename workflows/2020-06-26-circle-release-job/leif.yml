@@ -1,0 +1,42 @@
+version: 0.1
+repos:
+  - group: oclif
+    github_org: oclif
+    repos:
+      # - plugin-commands
+      # - plugin-help
+      # - plugin-legacy
+      # - plugin-not-found
+      # - plugin-plugins
+      # - plugin-warn-if-update-available
+      # - plugin-which
+      - screen
+      - color
+      - node-linewrap
+      - cli-ux
+      - test
+      - fancy-test
+      - fancy-test-nock
+      - oclif
+      - dev-cli
+      # - eslint
+      - eslint-config-oclif
+      - eslint-config-oclif-typescript
+      - nyc-config
+      # - docker
+      # - semantic-release
+sequences:
+  ci-release-job:
+    description: 'ci: release job'
+    assertions:
+      - type: file-is-exact
+        description: 'ci: release job'
+        target_relative_filepath: .circleci/config.yml
+        source_relative_filepath: workflows/2020-06-26-circle-release-job/config.yml
+
+workflows:
+  github-ci:
+    apply_to_groups:
+      - oclif
+    sequences:
+      - ci-release-job

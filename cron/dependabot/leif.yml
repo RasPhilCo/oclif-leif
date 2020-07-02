@@ -1,0 +1,21 @@
+version: 0.1
+repos:
+  - group: oclif-core
+    github_org: oclif
+    repos:
+      - errors
+sequences:
+  sync-dependabot:
+    description: 'chore: sync dependabot.yml'
+    assertions:
+      - type: file-is-exact
+        description: 'chore: sync dependabot.yml'
+        target_relative_filepath: .github/dependabot.yml
+        source_relative_filepath: cron/dependabot/dependabot.yml
+
+workflows:
+  sync-dependabot:
+    apply_to_groups:
+      - oclif-core
+    sequences:
+      - sync-dependabot

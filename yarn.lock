@@ -658,9 +658,9 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-leif@rasphilco/leif:
+leif@rasphilco/leif#compiled:
   version "0.0.0"
-  resolved "https://codeload.github.com/rasphilco/leif/tar.gz/a5ba776274022dedac9153be8c38f7aab00082e4"
+  resolved "https://codeload.github.com/rasphilco/leif/tar.gz/ab50c2a99b003fb3177088baf4e44626c1655934"
   dependencies:
     "@oclif/command" "^1.5.19"
     "@oclif/config" "^1.13.3"

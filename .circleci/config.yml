@@ -1,0 +1,40 @@
+---
+version: 2
+jobs:
+  assert: 
+    docker:
+      - image: node:latest
+    working_directory: ~/leif
+    steps:
+      - add_ssh_keys
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Run leif
+          command: |
+            rm ~/.gitconfig
+            npx leif run cron/dependabot/leif.yml
+
+workflows:
+  version: 2
+  "oclif-leif":
+    jobs:
+      - assert:
+          context: org-global
+          filters:
+            branches:
+              only:
+                - master
+  weekly:
+    triggers:
+      - schedule:
+          cron: "0 7 * * 1"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - assert:
+          context: org-global

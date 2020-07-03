@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "leif": "rasphilco/leif#compiled"
+  }
+}

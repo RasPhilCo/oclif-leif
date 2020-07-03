@@ -24,4 +24,17 @@ workflows:
       - assert:
           context: org-global
           filters:
-            branches: {only: master}
+            branches:
+              only:
+                - master
+  weekly:
+    triggers:
+      - schedule:
+          cron: "0 7 * * 1"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - assert:
+          context: org-global

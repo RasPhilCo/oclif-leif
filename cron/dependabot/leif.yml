@@ -3,7 +3,10 @@ repos:
   - group: oclif-core
     github_org: oclif
     repos:
+      - command
+      - config
       - errors
+      - parser
 sequences:
   sync-dependabot:
     description: 'chore: sync dependabot.yml'

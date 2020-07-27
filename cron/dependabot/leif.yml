@@ -3,10 +3,42 @@ repos:
   - group: oclif-core
     github_org: oclif
     repos:
-      - command
       - config
+      - command
       - errors
       - parser
+  - group: oclif-plugins
+    github_org: oclif
+    repos:
+      - plugin-autocomplete
+      - plugin-commands
+      - plugin-command-snapshot
+      - plugin-help
+      - plugin-interceptor
+      - plugin-legacy
+      - plugin-not-found
+      - plugin-plugins
+      - plugin-update
+      - plugin-warn-if-update-available
+      - plugin-which
+  - group: oclif-utils
+    github_org: oclif
+    repos:
+      - screen
+      - color
+      # - node-linewrap
+      - cli-ux
+      - test
+      - fancy-test
+      - fancy-test-nock
+      - oclif
+      - dev-cli
+      - eslint
+      - eslint-config-oclif
+      - eslint-config-oclif-typescript
+      - nyc-config
+      # - docker
+      - semantic-release
 sequences:
   sync-dependabot:
     description: 'chore: sync dependabot.yml'
@@ -20,5 +52,7 @@ workflows:
   sync-dependabot:
     apply_to_groups:
       - oclif-core
+      - oclif-plugins
+      - oclif-utils
     sequences:
       - sync-dependabot

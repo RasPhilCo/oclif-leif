@@ -3,6 +3,7 @@ repos:
   - group: oclif-core
     github_org: oclif
     repos:
+      - core
       - config
       - command
       - errors

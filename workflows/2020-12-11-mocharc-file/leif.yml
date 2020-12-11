@@ -49,6 +49,10 @@ sequences:
         target_relative_filepath: .mocharc.json
         source_relative_filepath: workflows/2020-12-11-mocharc-file/.mocharc.json
         if: "cat package.json | grep \\\"mocha\\\" && cat package.json | grep \\\"typescript\\\""
+      - type: file-does-not-exist
+        description: 'chore: rm test/mocha.opts'
+        target_relative_filepath: ./test/mocha.opts
+        if: "cat package.json | grep \\\"mocha\\\" && cat package.json | grep \\\"typescript\\\""
 
 workflows:
   github-ci:

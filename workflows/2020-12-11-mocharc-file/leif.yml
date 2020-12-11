@@ -42,10 +42,15 @@ repos:
       - semantic-release
 sequences:
   mocharc-file:
-    description: 'chore: add .mocharc.json'
+    description: 'chore: sync .mocharc.json'
     assertions:
-      - type: json-has-properties
+      - type: file-is-exact
         description: 'chore: add .mocharc.json'
+        target_relative_filepath: .mocharc.json
+        source_relative_filepath: workflows/2020-12-11-mocharc-file/.mocharc.json
+        if: "! test -f .mocharc.json && cat package.json | grep \\\"mocha\\\" && cat package.json | grep \\\"typescript\\\""
+      - type: json-has-properties
+        description: 'chore: sync .mocharc.json'
         target_relative_filepath: .mocharc.json
         source_relative_filepath: workflows/2020-12-11-mocharc-file/.mocharc.json
         if: "cat package.json | grep \\\"mocha\\\" && cat package.json | grep \\\"typescript\\\""

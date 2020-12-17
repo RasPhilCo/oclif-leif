@@ -1,7 +1,7 @@
 ---
 version: 2
 jobs:
-  assert: 
+  assert: &assert
     docker:
       - image: node:latest
     working_directory: ~/leif
@@ -16,6 +16,19 @@ jobs:
           command: |
             rm ~/.gitconfig
             npx leif run cron/dependabot/leif.yml
+  dry-run:
+    <<: *assert
+    steps:
+      - add_ssh_keys
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Run leif in dry-run mode
+          command: |
+            rm ~/.gitconfig
+            npx leif run cron/dependabot/leif.yml -d
 
 workflows:
   version: 2
@@ -26,6 +39,12 @@ workflows:
           filters:
             branches:
               only:
+                - master
+      - dry-run:
+          context: org-global
+          filters:
+            branches:
+              ignore:
                 - master
   weekly:
     triggers:

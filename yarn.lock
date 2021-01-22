@@ -204,6 +204,18 @@
     "@octokit/openapi-types" "^2.0.0"
     "@types/node" ">= 8"
 
+"@rasphilco/leif@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@rasphilco/leif/-/leif-0.4.0.tgz#f9a1eee9514d407ded9cef172872a7ac9bdf38bc"
+  integrity sha512-X90MZW9IccT5AXUkXqJieV0mYrbAwYw0rtqkWnYpdVdEnoGH1Ll0ol0nG1tLh4f6xzAaWXX7pDa1iyF02oTJaw==
+  dependencies:
+    "@oclif/command" "^1.5.19"
+    "@oclif/config" "^1.13.3"
+    "@octokit/rest" "^16.34.1"
+    cli-ux "^5.3.3"
+    fs-extra "^8.1.0"
+    js-yaml "^3.14.1"
+
 "@types/node@>= 8":
   version "14.14.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.14.tgz#f7fd5f3cc8521301119f63910f0fb965c7d761ae"
@@ -605,7 +617,7 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-js-yaml@^3.13.1:
+js-yaml@^3.13.1, js-yaml@^3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
   integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
@@ -619,17 +631,6 @@ jsonfile@^4.0.0:
   integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
   optionalDependencies:
     graceful-fs "^4.1.6"
-
-leif@rasphilco/leif#compiled:
-  version "0.0.0"
-  resolved "https://codeload.github.com/rasphilco/leif/tar.gz/b60906d308d5d9eab5ce501eee8e9ce4b60f1d8a"
-  dependencies:
-    "@oclif/command" "^1.5.19"
-    "@oclif/config" "^1.13.3"
-    "@octokit/rest" "^16.34.1"
-    cli-ux "^5.3.3"
-    fs-extra "^8.1.0"
-    js-yaml "^3.13.1"
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"

@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@rasphilco/leif": "^0.4.0"
+    "@rasphilco/leif": "latest"
   }
 }

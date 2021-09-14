@@ -48,6 +48,13 @@ sequences:
         description: 'chore: sync dependabot.yml'
         target_relative_filepath: .github/dependabot.yml
         source_relative_filepath: cron/dependabot/dependabot.yml
+  sync-node-engine:
+    description: 'build!: require node 12+'
+    assertions:
+      - type: json-has-properties
+        description: 'build!: require node 12+'
+        target_relative_filepath: package.json
+        source_relative_filepath: cron/dependabot/package.json
 
 workflows:
   sync-dependabot:
@@ -57,3 +64,11 @@ workflows:
       - oclif-utils
     sequences:
       - sync-dependabot
+  sync-node-engine:
+    apply_to_repos:
+      - oclif/core
+    apply_to_groups:
+      - oclif-plugins
+      - oclif-utils
+    sequences:
+      - sync-node-engine

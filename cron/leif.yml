@@ -55,6 +55,20 @@ sequences:
         description: 'build!: require node 12+'
         target_relative_filepath: package.json
         source_relative_filepath: cron/package.json
+  sync-circleci-config:
+    description: 'ci: sync .circleci/config.yml'
+    assertions:
+      - type: file-is-exact
+        description: 'ci: sync .circleci/config.yml'
+        target_relative_filepath: .circleci/config.yml
+        source_relative_filepath: cron/circleci/config.yml
+  sync-github-workflows-config:
+    description: 'ci: sync .github/workflows/config.yml'
+    assertions:
+      - type: file-is-exact
+        description: 'ci: sync .github/workflows/config.yml'
+        target_relative_filepath: .github/workflows/ci.yml
+        source_relative_filepath: cron/github/workflows/ci.yml
 
 workflows:
   sync-dependabot:
@@ -72,3 +86,19 @@ workflows:
       - oclif-utils
     sequences:
       - sync-node-engine
+  sync-ci-configs:
+    apply_to_repos:
+      # - oclif/plugin-autocomplete
+      - oclif/plugin-commands
+      - oclif/plugin-command-snapshot
+      - oclif/plugin-help
+      - oclif/plugin-interceptor
+      # - oclif/plugin-legacy
+      - oclif/plugin-not-found
+      - oclif/plugin-plugins
+      # - oclif/plugin-update
+      - oclif/plugin-warn-if-update-available
+      - oclif/plugin-which
+    sequences:
+      - sync-circleci-config
+      - sync-github-workflows-config

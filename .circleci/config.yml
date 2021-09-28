@@ -15,7 +15,7 @@ jobs:
           name: Run leif
           command: |
             rm ~/.gitconfig
-            npx leif run cron/dependabot/leif.yml
+            npx leif run cron/leif.yml
   dry-run:
     <<: *assert
     steps:
@@ -28,7 +28,7 @@ jobs:
           name: Run leif in dry-run mode
           command: |
             rm ~/.gitconfig
-            npx leif run cron/dependabot/leif.yml -d
+            npx leif run cron/leif.yml -d
 
 workflows:
   version: 2

@@ -54,7 +54,7 @@ sequences:
       - type: json-has-properties
         description: 'build!: require node 12+'
         target_relative_filepath: package.json
-        source_relative_filepath: cron/dependabot/package.json
+        source_relative_filepath: cron/package.json
 
 workflows:
   sync-dependabot:

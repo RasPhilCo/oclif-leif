@@ -88,6 +88,7 @@ workflows:
       - sync-node-engine
   sync-ci-configs:
     apply_to_repos:
+      - oclif/core
       # - oclif/plugin-autocomplete
       - oclif/plugin-commands
       - oclif/plugin-command-snapshot

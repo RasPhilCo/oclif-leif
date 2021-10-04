@@ -100,6 +100,15 @@ workflows:
       # - oclif/plugin-update
       - oclif/plugin-warn-if-update-available
       - oclif/plugin-which
+      - oclif/cli-ux
+      - oclif/color
+      - oclif/eslint-config-oclif
+      - oclif/eslint-config-oclif-typescript
+      - oclif/fancy-test
+      - oclif/fancy-test-nock
+      # - oclif/oclif
+      - oclif/screen
+      - oclif/test
     sequences:
       - sync-circleci-config
       - sync-github-workflows-config

@@ -12,34 +12,31 @@ repos:
     github_org: oclif
     repos:
       - plugin-autocomplete
-      - plugin-commands
       - plugin-command-snapshot
+      - plugin-commands
       - plugin-help
       - plugin-interceptor
       - plugin-legacy
       - plugin-not-found
       - plugin-plugins
       - plugin-update
+      - plugin-version
       - plugin-warn-if-update-available
       - plugin-which
   - group: oclif-utils
     github_org: oclif
     repos:
-      - screen
-      - color
-      # - node-linewrap
       - cli-ux
-      - test
-      - fancy-test
-      - fancy-test-nock
-      - oclif
-      - dev-cli
+      - color
       - eslint
       - eslint-config-oclif
       - eslint-config-oclif-typescript
+      - fancy-test
+      - fancy-test-nock
       - nyc-config
-      # - docker
-      - semantic-release
+      - oclif
+      - screen
+      - test
 sequences:
   sync-dependabot:
     description: 'chore: sync dependabot.yml'
@@ -48,13 +45,6 @@ sequences:
         description: 'chore: sync dependabot.yml'
         target_relative_filepath: .github/dependabot.yml
         source_relative_filepath: cron/dependabot/dependabot.yml
-  sync-node-engine:
-    description: 'build!: require node 12+'
-    assertions:
-      - type: json-has-properties
-        description: 'build!: require node 12+'
-        target_relative_filepath: package.json
-        source_relative_filepath: cron/package.json
   sync-circleci-config:
     description: 'ci: sync .circleci/config.yml'
     assertions:
@@ -62,13 +52,6 @@ sequences:
         description: 'ci: sync .circleci/config.yml'
         target_relative_filepath: .circleci/config.yml
         source_relative_filepath: cron/circleci/config.yml
-  sync-github-workflows-config:
-    description: 'ci: sync .github/workflows/config.yml'
-    assertions:
-      - type: file-is-exact
-        description: 'ci: sync .github/workflows/config.yml'
-        target_relative_filepath: .github/workflows/ci.yml
-        source_relative_filepath: cron/github/workflows/ci.yml
 
 workflows:
   sync-dependabot:
@@ -78,37 +61,28 @@ workflows:
       - oclif-utils
     sequences:
       - sync-dependabot
-  sync-node-engine:
-    apply_to_repos:
-      - oclif/core
-    apply_to_groups:
-      - oclif-plugins
-      - oclif-utils
-    sequences:
-      - sync-node-engine
   sync-ci-configs:
     apply_to_repos:
-      - oclif/core
-      # - oclif/plugin-autocomplete
-      - oclif/plugin-commands
-      - oclif/plugin-command-snapshot
-      - oclif/plugin-help
-      - oclif/plugin-interceptor
-      # - oclif/plugin-legacy
-      - oclif/plugin-not-found
-      - oclif/plugin-plugins
-      # - oclif/plugin-update
-      - oclif/plugin-warn-if-update-available
-      - oclif/plugin-which
       - oclif/cli-ux
       - oclif/color
+      - oclif/core
       - oclif/eslint-config-oclif
       - oclif/eslint-config-oclif-typescript
       - oclif/fancy-test
       - oclif/fancy-test-nock
-      # - oclif/oclif
+      - oclif/plugin-autocomplete
+      - oclif/plugin-command-snapshot
+      - oclif/plugin-commands
+      - oclif/plugin-help
+      - oclif/plugin-interceptor
+      - oclif/plugin-not-found
+      - oclif/plugin-plugins
+      - oclif/plugin-update
+      - oclif/plugin-version
+      - oclif/plugin-warn-if-update-available
+      - oclif/plugin-which
       - oclif/screen
       - oclif/test
+      # - oclif/oclif
     sequences:
       - sync-circleci-config
-      - sync-github-workflows-config

@@ -37,13 +37,13 @@ workflows:
   "oclif-leif":
     jobs:
       - assert:
-          context: org-global
+          context: SF-CLI-RELEASE-PROCESS
           filters:
             branches:
               only:
                 - main
       - dry-run:
-          context: org-global
+          context: SF-CLI-RELEASE-PROCESS
           filters:
             branches:
               ignore:
@@ -58,4 +58,4 @@ workflows:
                 - main
     jobs:
       - assert:
-          context: org-global
+          context: SF-CLI-RELEASE-PROCESS

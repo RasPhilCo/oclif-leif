@@ -41,13 +41,13 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
       - dry-run:
           context: org-global
           filters:
             branches:
               ignore:
-                - master
+                - main
   weekly:
     triggers:
       - schedule:
@@ -55,7 +55,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - assert:
           context: org-global

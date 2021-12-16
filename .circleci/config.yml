@@ -15,6 +15,8 @@ jobs:
           name: Run leif
           command: |
             rm ~/.gitconfig
+            git config --global user.email "$GIT_EMAIL"
+            git config --global user.name "$GIT_USERNAME"
             npx leif --version
             npx leif run cron/leif.yml
   dry-run:
